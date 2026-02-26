@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fatim Boutique | Officiel & Sécurisé</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #ff5722;
+            --primary-dark: #e64a19;
+            --secondary: #2ecc71;
+            --dark: #1a1a1a;
+            --light: #f4f7f6;
+            --white: #ffffff;
+        }
+
+        /* --- PROTECTION SÉCURITÉ --- */
+        body { 
+            margin: 0; font-family: 'Poppins', sans-serif; background: var(--light); 
+            user-select: none; -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER GÉANT & ANIMATION --- */
+        .site-header { 
+            position: relative; 
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
+            height: 550px; /* Taille augmentée */
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; overflow: hidden; color: white;
+        }
+
+        .orbit-container {
+            position: absolute; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1;
+        }
+
+        .bg-float-img {
+            position: absolute; width: 180px; height: 180px;
+            object-fit: cover; border-radius: 50%; opacity: 0.7;
+            border: 6px solid rgba(255,255,255,0.6);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            animation: circulate 25s infinite linear;
+        }
+
+        .img-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .img-2 { top: 5%; left: 70%; animation-delay: -6s; }
+        .img-3 { bottom: 10%; right: 5%; animation-delay: -12s; }
+        .img-4 { bottom: 10%; left: 10%; animation-delay: -18s; }
+
+        @keyframes circulate {
+            0% { transform: rotate(0deg) translate(80px) rotate(0deg); }
+            100% { transform: rotate(360deg) translate(80px) rotate(-360deg); }
+        }
+
+        .header-content { position: relative; z-index: 10; padding: 20px; }
+        .header-content h1 { font-size: 4rem; margin: 0; font-weight: 800; text-transform: uppercase; text-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+
+        /* --- NAVIGATION --- */
+        .nav-bar {
+            background: var(--white); padding: 20px 5%; display: flex; 
+            justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 2000; box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 700; margin-right: 20px; font-size: 12px; text-transform: uppercase; }
+
+        /* --- PRODUITS --- */
+        .container { padding: 30px 5% 100px; }
+        .cat-title { border-left: 10px solid var(--primary); padding-left: 20px; margin: 60px 0 30px; font-size: 2rem; color: var(--dark); font-weight: 800; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 25px; }
+
+        .card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.06); text-align: center; border: 1px solid #eee; transition: 0.4s; }
+        .card:hover { transform: translateY(-10px); }
+        .card img { width: 100%; height: 260px; object-fit: cover; }
+        .card h3 { font-size: 13px; margin: 15px; color: #333; height: 32px; overflow: hidden; padding: 0 10px; }
+        .price { color: var(--primary); font-weight: 800; font-size: 1.2rem; margin-bottom: 15px; }
+        .add-btn { background: var(--secondary); color: white; border: none; padding: 12px; border-radius: 10px; width: 90%; cursor: pointer; font-weight: bold; margin-bottom: 20px; }
+
+        /* --- PANIER --- */
+        .cart-sidebar {
+            position: fixed; right: -100%; top: 0; width: 100%; max-width: 450px; height: 100%;
+            background: white; z-index: 4000; transition: 0.6s cubic-bezier(0.77, 0, 0.175, 1); display: flex; flex-direction: column;
+        }
+        .cart-sidebar.active { right: 0; }
+        .promo-box { background: #f8f9fa; margin: 20px; padding: 20px; border-radius: 15px; border: 2px dashed #ddd; text-align: center; }
+        .promo-box input { padding: 12px; border: 1px solid #ccc; border-radius: 8px; width: 60%; margin-bottom: 10px; }
+        .promo-box button { padding: 12px; background: var(--dark); color: white; border: none; border-radius: 8px; width: 80%; cursor: pointer; font-weight: bold; }
+
+        /* --- FOOTER --- */
+        .site-footer { background: var(--dark); color: white; padding: 80px 5% 40px; text-align: center; }
+        .footer-info a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        .payment-logos { display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+        .payment-logos img { height: 45px; background: white; padding: 5px; border-radius: 8px; }
+
+        /* --- BOUTON WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed; bottom: 35px; right: 35px; background: #25D366; 
+            color: white; width: 75px; height: 75px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 45px; z-index: 3000; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 3999; display: none; }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+<div style="background: #000; color: #fff; font-size: 11px; text-align: center; padding: 10px; font-weight: 800; letter-spacing: 2px;">
+    🔒 BOUCLIER ANTI-PIRATAGE ACTIVÉ | SERVEUR FATIM BOUTIQUE SÉCURISÉ
+</div>
+
+<div id="cart-sidebar" class="cart-sidebar">
+    <div style="padding: 30px; background: var(--dark); color: white; display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-weight: 800; font-size: 1.5rem;">MON PANIER</span>
+        <span onclick="toggleCart()" style="cursor:pointer; font-size: 45px;">&times;</span>
+    </div>
+    <div id="cart-items" style="flex:1; overflow-y:auto; padding:25px;"></div>
+    <div class="promo-box">
+        <input type="text" id="promo-input" placeholder="CODE : FATIM20">
+        <button onclick="applyPromo()">APPLIQUER LA RÉDUCTION</button>
+        <p id="promo-msg" style="margin-top:10px; font-weight:bold;"></p>
+    </div>
+    <div style="padding: 30px; border-top: 2px solid #eee;">
+        <div style="display:flex; justify-content:space-between; font-weight: 800; font-size: 1.6rem; margin-bottom: 20px;">
+            <span>TOTAL :</span>
+            <span><span id="cart-total">0</span> FCFA</span>
+        </div>
+        <button onclick="sendWhatsApp()" style="width:100%; background:#25D366; color:white; border:none; padding:20px; border-radius:15px; font-weight:800; cursor:pointer; font-size: 1.1rem;">VALIDER SUR WHATSAPP</button>
+    </div>
+</div>
+
+<header class="site-header">
+    <div class="orbit-container">
+        <img src="/images/femmes/1771891260219.jpg" class="bg-float-img img-1" onerror="this.style.display='none'">
+        <img src="/images/chaussures/FB_IMG_1771924923054.jpg" class="bg-float-img img-2" onerror="this.style.display='none'">
+        <img src="/images/hommes/1771840138602.jpg" class="bg-float-img img-3" onerror="this.style.display='none'">
+        <img src="/images/colis/1771891230657.jpg" class="bg-float-img img-4" onerror="this.style.display='none'">
+    </div>
+    <div class="header-content">
+        <h1>Fatim Boutique</h1>
+        <p>L'Élégance de la Mode Ivoirienne</p>
+    </div>
+</header>
+
+<nav class="nav-bar">
+    <div class="nav-links">
+        <a href="#habille">HABILLEMENT</a>
+        <a href="#femme">FEMMES</a>
+        <a href="#homme">HOMMES</a>
+    </div>
+    <div onclick="toggleCart()" style="cursor:pointer; font-size: 30px; position: relative;">
+        🛒 <span id="cart-count" style="position:absolute; top:-10px; right:-15px; background:red; color:white; font-size:12px; padding:3px 10px; border-radius:50%; font-weight:bold;">0</span>
+    </div>
+</nav>
+
+<div class="container">
+    
+    <h2 class="cat-title" id="habille">Collection Habillement (20)</h2>
+    <div class="grid" id="habillement-grid">
+        <script>
+            const clothes = [
+                "Robe de Gala Luxe", "Ensemble Soie Royale", "Combi Chic", "Top Satin Premium", "Veste Tailleur",
+                "Robe de Soirée", "Ensemble Bureau", "Chemise Soie", "Pantalon Palazzo", "Jupe Crayon Chic",
+                "Maxi Robe Été", "Veste Blazer", "Ensemble Crop-top", "Tunique Brodée", "Robe Cocktail",
+                "Veste Cuir Designer", "Jean Slim Luxe", "Haut Dentelle", "Robe Africaine", "Ensemble Relax"
+            ];
+            const grid = document.getElementById('habillement-grid');
+            for(let i=1; i<=20; i++){
+                grid.innerHTML += `
+                <div class="card">
+                    <img src="/images/femmes/1771840096119.jpg" onerror="this.src='https://via.placeholder.com/300x400?text=Vêtement+Fatim'">
+                    <h3>${clothes[i-1]}</h3>
+                    <div class="price">8 000 FCFA</div>
+                    <button class="add-btn" onclick="addToCart('${clothes[i-1]}', 13 000, '/images/colis /1771891220671.jpg')">AJOUTER AU PANIER</button>
+                </div>`;
+            }
+        </script>
+    </div>
+
+    <h2 class="cat-title" id="femme">Mode Femme</h2>
+    <div class="grid">
+        <div class="card">
+            <img src="/images/femmes/1771839996325.jpg">
+            <h3>Ensemble Soie Dame</h3>
+            <div class="price">10 000 FCFA</div>
+            <button class="add-btn" onclick="addToCart('Ensemble Soie Dame', 10000, '/images/femmes/1771839996325.jpg')">AJOUTER</button>
+        </div>
+        <div class="card">
+            <img src="/images/femmes/1771839960078.jpg">
+            <h3>Robe Fleurie</h3>
+            <div class="price">10 000 FCFA</div>
+            <button class="add-btn" onclick="addToCart('Robe Fleurie', 10000, '/images/femmes/1771839960078.jpg')">AJOUTER</button>
+        </div>
+    </div>
+
+</div>
+
+<footer class="site-footer">
+    <div class="footer-info">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">FATIM BOUTIQUE</h2>
+        <p>📍 Abidjan, Côte d'Ivoire</p>
+        <p>📞 Contact : <a href="tel:+2250787736801">+225 07 87 73 68 01</a></p>
+        <p>📧 Email : <a href="mailto:sksservice33@gmail.com">sksservice33@gmail.com</a></p>
+    </div>
+    <div class="payment-logos">
+        <img src="/images/logo/FB_IMG_1771927879861.jpg" alt="Orange Money">
+        <img src="/images/logo/FB_IMG_1771928313416.jpg" alt="Wave">
+        <img src="/images/logo/FB_IMG_1771928387544.jpg" alt="Moov">
+    </div>
+    <p style="font-size:10px; opacity:0.3; margin-top:50px;">PROTECTION ANTI-PIRATAGE V3.0 ACTIVÉE - AUCUNE COPIE AUTORISÉE.</p>
+</footer>
+
+<a href="https://wa.me/2250787736801" class="whatsapp-float">💬</a>
+<div id="overlay" onclick="toggleCart()"></div>
+
+<script>
+    // --- BOUCLIER SÉCURITÉ ---
+    window.onerror = function() { return true; };
+    document.onkeydown = function(e) { if(e.keyCode == 123) return false; }; // Bloque F12
+
+    let cart = [];
+    let reduction = 0;
+
+    function toggleCart() {
+        const side = document.getElementById('cart-sidebar');
+        const over = document.getElementById('overlay');
+        side.classList.toggle('active');
+        over.style.display = side.classList.contains('active') ? 'block' : 'none';
+    }
+
+    function addToCart(name, price, img) {
+        cart.push({name, price, img});
+        updateUI();
+    }
+
+    function applyPromo() {
+        const code = document.getElementById('promo-input').value.trim().toUpperCase();
+        const msg = document.getElementById('promo-msg');
+        if(code === "FATIM20") {
+            reduction = 0.20; // -20%
+            msg.innerText = "CODE VALIDÉ : -20% SUR VOTRE COMMANDE !";
+            msg.style.color = "green";
+        } else {
+            reduction = 0;
+            msg.innerText = "CODE INVALIDE";
+            msg.style.color = "red";
+        }
+        updateUI();
+    }
+
+    function updateUI() {
+        const items = document.getElementById('cart-items');
+        const totalDisp = document.getElementById('cart-total');
+        const countDisp = document.getElementById('cart-count');
+        countDisp.innerText = cart.length;
+        items.innerHTML = cart.length === 0 ? '<p style="text-align:center; padding:20px;">Panier vide</p>' : "";
+        
+        let total = 0;
+        cart.forEach((item, index) => {
+            total += item.price;
+            items.innerHTML += `
+                <div style="display:flex; align-items:center; gap:15px; margin-bottom:15px; background:#f4f4f4; padding:15px; border-radius:15px;">
+                    <img src="${item.img}" style="width:65px; height:65px; object-fit:cover; border-radius:10px;" onerror="this.src='https://via.placeholder.com/50'">
+                    <div style="flex:1; font-size:13px;"><b>${item.name}</b><br>${item.price.toLocaleString()} FCFA</div>
+                    <button onclick="removeItem(${index})" style="background:none; border:none; color:red; font-size:30px; cursor:pointer;">&times;</button>
+                </div>`;
+        });
+        let finalTotal = total * (1 - reduction);
+        totalDisp.innerText = Math.round(finalTotal).toLocaleString();
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        updateUI();
+    }
+
+    function sendWhatsApp() {
+        if(cart.length === 0) return alert("Votre panier est vide");
+        let msg = "*COMMANDE FATIM BOUTIQUE*%0A%0A";
+        cart.forEach((item, i) => msg += `${i+1}. *${item.name}* (${item.price.toLocaleString()} FCFA)%0A`);
+        if(reduction > 0) msg += "%0A✅ *CODE PROMO APPLIQUÉ : -20%*";
+        msg += "%0A%0A*TOTAL À PAYER : " + document.getElementById('cart-total').innerText + " FCFA*";
+        window.open(`https://wa.me/2250787736801?text=${msg}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
